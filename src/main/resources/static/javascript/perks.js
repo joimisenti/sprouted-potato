@@ -90,7 +90,7 @@ function handleSubmitPerksToLoadout() {
 
     // Create a Loadout DTO to send to the backend
     const loadoutDto = {
-        userId = userId;
+        userId: userId,
         perkIds: selectedPerkIds
     };
 

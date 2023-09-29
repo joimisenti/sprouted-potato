@@ -37,6 +37,8 @@ public class LoadoutController {
     public ResponseEntity<String> createLoadout(@RequestBody LoadoutDto loadoutDto) {
         // Convert the selected perk IDs to Perk entities
         List<Perk> selectedPerks = perkService.getPerksByIds(loadoutDto.getPerksIds());
+        
+        System.out.println("Selected Perk Ids: " + selectedPerks);
 
         // Create a new Loadout entity
         Loadout loadout = new Loadout();
