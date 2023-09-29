@@ -23,62 +23,59 @@ function handleLogout(){
     }
 }
 
-const handleSubmit = async (e) => {
-    e.preventDefault()
-    let bodyObj = {
-        body: document.getElementById("loadout-input").value
-    }
-    await addLoadout(bodyObj);
-    document.getElementById("loadout-input").value = ''
-}
+// Function to fetch and display loadouts
+// Fetch and display loadouts
+fetch('/api/v1/loadouts')
+    .then(response => response.json())
+    .then(data => {
+        const loadoutsContainer = document.getElementById('loadouts-container');
 
-async function addLoadout(obj) {
-    const response = await fetch(`${baseUrl}user/${userId}`, {
-        method: "POST",
-        body: JSON.stringify(obj),
-        headers: headers
+        data.forEach(loadout => {
+            const loadoutDiv = document.createElement('div');
+            loadoutDiv.classList.add('loadout');
+
+            // Display loadout name
+//            const loadoutName = `<h2>${loadout.name}</h2>`;
+
+            // Add editable fields for buildType and summary
+            const buildTypeInput = `<input type="text" value="${loadout.buildType || ''}" placeholder="Build Type">`;
+            const summaryTextarea = `<textarea rows="4" placeholder="Summary">${loadout.summary || ''}</textarea>`;
+
+            // Create a container for the perk icons
+            const perkIconsContainer = document.createElement('div');
+
+            // Display perk icons (1 to 4 perks)
+            loadout.perksIds.forEach(perk => {
+                const perkIcon = document.createElement('img');
+                perkIcon.src = perk.image;
+                perkIcon.alt = perk.name;
+                perkIconsContainer.appendChild(perkIcon);
+            });
+
+            // Append all elements to the loadout container
+            loadoutDiv.innerHTML = buildTypeInput + summaryTextarea;
+            loadoutDiv.appendChild(perkIconsContainer);
+            loadoutsContainer.appendChild(loadoutDiv);
+        });
     })
-        .catch(err => console.error(err.message))
-    if (response.status == 200) {
-        return getLoadouts(userId);
-    }
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+
+// Function to send a PUT request to update a loadout
+function updateLoadout(loadoutId, buildType, summary) {
+    // Implement your PUT request logic here
+    // You can use fetch or another library (e.g., axios) to send the request
+    // Include the loadoutId, buildType, and summary in the request body
+    // Send the request to your backend API endpoint for updating loadouts
 }
 
-async function getLoadouts(userId) {
-    await fetch(`${baseUrl}user/${userId}`, {
-        method: "GET",
-        headers: headers
-    })
-        .then(response => response.json())
-        .then(data => createLoadoutCards(data))
-        .catch(err => console.error(err))
-}
+// Fetch and display loadouts when the page loads
+//window.addEventListener('load', fetchLoadouts);
 
-async function getLoadoutById(loadoutId){
-    await fetch(baseUrl + loadoutId, {
-        method: "GET",
-        headers: headers
-    })
-        .then(res => res.json())
-        .then(data => populateModal(data))
-        .catch(err => console.error(err.message))
-}
 
-async function handleLoadoutEdit(loadoutId) {
-    let bodyObj = {
-        id: loadoutId,
-        body: loadoutBody.value
-    }
 
-    await fetch(baseUrl, {
-        method: "PUT",
-        body: JSON.stringify(bodyObj),
-        headers: headers
-    })
-        .catch(err => console.error(err))
-
-    return getLoadouts(userId);
-}
 
 async function handleDelete(loadoutId){
     await fetch(baseUrl + loadoutId, {
@@ -89,43 +86,3 @@ async function handleDelete(loadoutId){
 
     return getLoadouts(userId);
 }
-
-const createLoadoutCards = (array) => {
-    loadoutContainer.innerHTML = ''
-    array.forEach(obj => {
-        let loadoutCard = document.createElement("div")
-        loadoutCard.classList.add("m-2")
-        loadoutCard.innerHTML = `
-            <div class="card d-flex" style="width: 18rem; height: 18 rem;">
-                <div class="card-body d-flex flex-column justify-content-between" style="height: available">
-                    <p class="card-text">${obj.summary}</p>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-danger" onclick="handleDelete(${obj.id})">Delete</button>
-                        <button onclick="getLoadoutById(${obj.id})" type="button" class="btn btn-primary"
-                        data-bs-toggle="modal" data-bs-target="#loadout-edit-modal">
-                        Edit
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `
-        loadoutContainer.append(loadoutCard);
-    })
-}
-
-const populateModal = (obj) => {
-    loadoutBody.innerText = ''
-    loadoutBody.innerText = obj.summary
-    updateLoadoutBtn.setAttribute('data-loadout-id', obj.id)
-}
-
-getLoadouts(userId);
-
-submitForm.addEventListener("submit", handleSubmit)
-
-updateLoadoutBtn.addEventListener("click", (e) => {
-    let loadoutId = e.target.getAttribute('data-loadout-id')
-    handleLoadoutEdit(loadoutId);
-})
-
-<a class="btn btn-danger navbar-btn" href="./login.html" onclick="handleLogout()">Logout</a>

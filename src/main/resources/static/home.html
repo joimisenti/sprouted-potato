@@ -11,44 +11,22 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="./css/home.css" type="text/css">
 
-    <title>Home</title>
+    <title>Loadouts Home</title>
 </head>
 <body>
-<a class="btn btn-danger navbar-btn" href="./login.html">Login</a>
-<div class="container" id="home-container">
-    <div id="loadout-form-container">
-        <form id="loadout-form">
-            <div class="loadout-group">
-                <textarea class="form-control" id="loadout-input" placeholder="Add your loadout summary..." rows="5"></textarea>
-            </div>
-            <button id="submit-button" type="submit" class="btn btn-primary mt-1">Submit</button>
-        </form>
+<a class="btn btn-danger navbar-btn" href="./login.html" onclick="handleLogout()">Logout</a>
+<h1>Loadouts</h1>
 
-        <div id="loadout-container" class="container-fluid"></div>
-    </div>
-</div>
+<div id="loadouts-container"></div>
+
+
+
 
 <h1>Hello World!</h1>
+<a href="perks.html">Perks Page</a>
 
 <!-- Modal -->
-<div class="modal fade" id="loadout-edit-modal" data-bs-backdrop="static" tabindex="-1"
-     aria-labelledby="loadout-edit-modal-title" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loadout-edit-modal-title">Edit your loadout</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body d-flex">
-                <textarea class="form-control" rows="5" id="loadout-summary"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="update-loadout-button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script src="./javascript/home.js" type="application/javascript"></script>
 

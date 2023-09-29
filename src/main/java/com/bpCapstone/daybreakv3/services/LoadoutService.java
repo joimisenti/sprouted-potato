@@ -32,4 +32,6 @@ public interface LoadoutService {
     Optional<LoadoutDto> getLoadoutById(Long loadoutId);
 
     Loadout saveLoadout(Loadout loadout);
+
+    List<LoadoutDto> getAllLoadouts();
 }

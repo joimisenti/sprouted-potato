@@ -21,7 +21,7 @@ public class PerkLoader implements CommandLineRunner {
         // Implement the logic to load data from JSON files and save to database
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            Perk[] perks = objectMapper.readValue(new File("/Users/jmisenti/Desktop/Java-Specs/daybreakBackup/src/main/java/com/bpCapstone/daybreakBackup/assets/SurvivorPerkArray.json"), Perk[].class);
+            Perk[] perks = objectMapper.readValue(new File("/Users/jmisenti/Desktop/Java-Specs/daybreakv3/src/main/java/com/bpCapstone/daybreakv3/assets/SurvivorPerkArrayPartial.json"), Perk[].class);
 
             // Iterate through loaded perks and save them to the database
             for (Perk perk: perks) {

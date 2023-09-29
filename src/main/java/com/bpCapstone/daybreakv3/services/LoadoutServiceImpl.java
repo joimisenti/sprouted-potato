@@ -102,7 +102,7 @@ public class LoadoutServiceImpl implements LoadoutService {
         loadoutOptional.ifPresent(loadout -> {
             loadout.setBuildType(loadoutDto.getBuildType());
 //            loadout.setPerks(loadoutDto.getPerks());
-            loadout.setSummary(loadoutDto.getSummary());
+//            loadout.setSummary(loadoutDto.getSummary());
             loadoutRepository.saveAndFlush(loadout);
         });
     }
@@ -126,5 +126,12 @@ public class LoadoutServiceImpl implements LoadoutService {
             return Optional.of(new LoadoutDto(loadoutOptional.get()));
         }
         return Optional.empty();
+    }
+
+    // Getting all Loadouts
+    @Override
+    public List<LoadoutDto> getAllLoadouts() {
+        List<Loadout> loadoutList = loadoutRepository.findAll();
+        return loadoutList.stream().map(loadout -> new LoadoutDto(loadout)).collect(Collectors.toList());
     }
 }

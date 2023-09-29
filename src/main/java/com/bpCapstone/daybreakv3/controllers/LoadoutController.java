@@ -2,6 +2,7 @@ package com.bpCapstone.daybreakv3.controllers;
 
 //import com.bpCapstone.daybreakv3.dtos.LoadoutCreateRequest;
 import com.bpCapstone.daybreakv3.dtos.LoadoutDto;
+import com.bpCapstone.daybreakv3.dtos.PerkDto;
 import com.bpCapstone.daybreakv3.entities.Loadout;
 import com.bpCapstone.daybreakv3.entities.Perk;
 import com.bpCapstone.daybreakv3.services.LoadoutService;
@@ -37,9 +38,9 @@ public class LoadoutController {
     public ResponseEntity<String> createLoadout(@RequestBody LoadoutDto loadoutDto) {
         // Convert the selected perk IDs to Perk entities
         List<Perk> selectedPerks = perkService.getPerksByIds(loadoutDto.getPerksIds());
-        
-        System.out.println("Selected Perk Ids: " + selectedPerks);
 
+//        System.out.println(selectedPerks);
+//
         // Create a new Loadout entity
         Loadout loadout = new Loadout();
         loadout.setPerks(new HashSet<>(selectedPerks));
@@ -78,5 +79,10 @@ public class LoadoutController {
     @GetMapping("/{loadoutId}")
     public Optional<LoadoutDto> getLoadoutById(@PathVariable Long loadoutId) {
         return loadoutService.getLoadoutById(loadoutId);
+    }
+
+    @GetMapping
+    public List<LoadoutDto> getAllLoadouts() {
+        return loadoutService.getAllLoadouts();
     }
 }

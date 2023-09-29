@@ -87,13 +87,17 @@ function updateSelectedPerks() {
 function handleSubmitPerksToLoadout() {
     // Create an array of selected perk IDs
     const selectedPerkIds = selectedPerks.map(perk => perk.id);
+    console.log(selectedPerkIds)
 
     // Create a Loadout DTO to send to the backend
     const loadoutDto = {
-        userId: userId,
-        perkIds: selectedPerkIds
+        id: userId,
+        buildType: "",
+        perksIds: selectedPerkIds
     };
 
+    const temp = JSON.stringify(loadoutDto);
+    console.log(temp);
     // Send the data to the backend
     fetch('/api/v1/loadouts/create', {
         method: 'POST',
