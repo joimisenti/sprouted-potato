@@ -71,7 +71,7 @@ public class LoadoutController {
     public void deleteLoadoutById(@PathVariable Long loadoutId) {
         loadoutService.deleteLoadoutById(loadoutId);
     }
-    @PutMapping
+    @PutMapping("/{loadoutId}")
     public void updateLoadout(@RequestBody LoadoutDto loadoutDto) {
         loadoutService.updateLoadoutById((loadoutDto));
     }

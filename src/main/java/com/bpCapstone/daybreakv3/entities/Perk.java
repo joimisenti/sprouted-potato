@@ -89,10 +89,10 @@ public class Perk {
             this.name = perkDto.getName();
         }
         if (perkDto.getImage() != null) {
-            this.name = perkDto.getImage();
+            this.image = perkDto.getImage();
         }
         if (perkDto.getTeachable() != null) {
-            this.name = perkDto.getTeachable();
+            this.teachable = perkDto.getTeachable();
         }
         if (perkDto.getSurvivor() != null) {
             this.survivor = perkDto.getSurvivor();

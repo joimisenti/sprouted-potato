@@ -21,7 +21,7 @@ public class LoadoutDto implements Serializable {
     private Set<PerkDto> perkDtoSet = new HashSet<>();
     private List<Long> perksIds;
     private String summary;
-//    private UserDto userDto;
+    private UserDto userDto;
 
     public LoadoutDto(Loadout loadout) {
         if (loadout.getId() != null) {
@@ -34,9 +34,11 @@ public class LoadoutDto implements Serializable {
             this.summary = loadout.getSummary();
         }
         // Populate perkIds from associated Perk entities
-        this.perksIds = loadout.getPerks().stream()
-                .map(Perk::getId)
-                .collect(Collectors.toList());
+        if (loadout.getPerks() != null) {
+            this.perksIds = loadout.getPerks().stream()
+                    .map(Perk::getId)
+                    .collect(Collectors.toList());
+        }
     }
 
 }

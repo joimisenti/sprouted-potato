@@ -101,8 +101,7 @@ public class LoadoutServiceImpl implements LoadoutService {
         Optional<Loadout> loadoutOptional = loadoutRepository.findById(loadoutDto.getId());
         loadoutOptional.ifPresent(loadout -> {
             loadout.setBuildType(loadoutDto.getBuildType());
-//            loadout.setPerks(loadoutDto.getPerks());
-//            loadout.setSummary(loadoutDto.getSummary());
+            loadout.setSummary(loadoutDto.getSummary());
             loadoutRepository.saveAndFlush(loadout);
         });
     }

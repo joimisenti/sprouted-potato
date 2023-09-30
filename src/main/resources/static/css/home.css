@@ -1,0 +1,63 @@
+.loadout {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f9f9f9;
+}
+
+.loadout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.loadout-header h2 {
+    margin: 0;
+}
+
+.edit-button, .save-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.loadout-content {
+    display: flex;
+    align-items: flex-start; /* Align content to the top */
+    margin-top: 10px;
+}
+
+.build-type-input,
+.summary-textarea {
+    width: 100%; /* Input fields expand to fill the container */
+    margin-bottom: 10px; /* Add margin between input fields */
+}
+
+/* Flex display to the perkIconsContainer to create a row layout */
+.perk-icons-container {
+    display: flex;
+    flex-wrap: wrap; /* wrap perk icons to next line if exceed container width */
+    margin-right: 10px; /* Add margin to separate perk icons from summary */
+    align-items: center; /* Vertically center items */
+}
+
+/* Style individual perk icon containers */
+.perk-figure {
+    margin-right: 10px; /* Add spacing between icons */
+}
+
+/* Style the perkIcon images */
+.perk-figure img {
+    max-width: 100px; /* Adjust the max-width to control the image size */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Style the perk name captions */
+.perk-figure figcaption {
+    text-align: center; /* Center text */
+    font-size: 14px; /* Adjust font size as needed */
+}
