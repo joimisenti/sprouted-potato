@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -43,18 +43,24 @@
 </header>
 
 <body class="container">
-<h1>Select Your Perks</h1>
-<div class="perks-container">
-    <div class="perk-grid">
-        <!-- Perk items to be added dynamically -->
+<div class="row">
+    <div class="col-8">
+        <h1 class="text-center">Select Your Perks</h1>
+        <div class="perks-container">
+            <div class="perk-grid">
+                <!-- Perk items to be added dynamically -->
+            </div>
+        </div>
     </div>
-</div>
-<div class="selected-perks">
-    <h2>Selected Perks:</h2>
-    <ul id="selected-perks-list">
-        <!-- Selected perks will display here -->
-    </ul>
-    <button type="button" id="perks-submit-button">Submit</button>
+    <div class="col-4">
+        <div class="selected-perks">
+            <h2>Selected Perks:</h2>
+            <ul class= "list-group" id="selected-perks-list">
+                <!-- Selected perks will display here -->
+            </ul>
+            <button type="button" id="perks-submit-button">Submit</button>
+        </div>
+    </div>
 </div>
 
 <script src="./javascript/perks.js" type="application/javascript"></script>

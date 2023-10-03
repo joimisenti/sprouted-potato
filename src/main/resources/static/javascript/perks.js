@@ -61,6 +61,7 @@ function updateSelectedPerks() {
     // Loop through selected perks and create list items
     selectedPerks.forEach(perk => {
         const listItem = document.createElement('li');
+        listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center')
         listItem.textContent = perk.name;
 
         const listIcon = document.createElement('img');

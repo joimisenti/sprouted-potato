@@ -1,0 +1,10 @@
+.image-overlay-container {
+    position: relative;
+    z-index: 999;
+}
+
+img {
+    margin-top: -40px;
+    margin-right: -30px;
+    pointer-events: none;
+}

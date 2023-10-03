@@ -8,7 +8,14 @@
     background-size: cover;
 }
 
+h5, p {
+    color: white;
+}
 
+.image-overlay-container {
+    position: relative;
+    z-index: 999;
+}
 
 #yui {
     margin-top: -200px;
