@@ -43,6 +43,11 @@ function fetchLoadouts() {
             const headerDiv = document.createElement('div');
             headerDiv.classList.add('loadout-header');
 
+            // I want to concentrate the Edit, Save, and Delete buttons in the right corner of the Header
+            // I will create a right-corner-header div to place them together
+            const rightCornerHeaderDiv = document.createElement('div');
+            rightCornerHeaderDiv.classList.add('right-corner-header');
+
             // Header Part 1: Build Type (aka the Loadout Name)
             const buildTypeInput = `<input type="text" value="${loadout.buildType || ''}" placeholder="Build Type">`;
             const buildTypeInputEl = document.createElement('div');
@@ -56,16 +61,25 @@ function fetchLoadouts() {
             editButton.classList.add('edit-button');
             editButton.addEventListener('click', () => toggleEditMode(loadoutDiv));
 
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.classList.add('delete-button');
+            deleteButton.addEventListener('click', () => handleDelete(loadout.id));
+
             const saveButton = document.createElement('button');
             saveButton.textContent = 'Save';
             saveButton.classList.add('save-button');
             saveButton.style.display = 'none'; // Initially hidden
             saveButton.addEventListener('click', () => saveChanges(loadoutDiv));
 
-            // Append the loadout name and Edit/Save buttons to the header
+            // Append the Edit, Save, and Delete buttons to the right-corner-header div
+            rightCornerHeaderDiv.appendChild(editButton);
+            rightCornerHeaderDiv.appendChild(deleteButton);
+            rightCornerHeaderDiv.appendChild(saveButton);
+
+            // Append the loadout name and right-corner-header to the header
             headerDiv.appendChild(buildTypeInputEl);
-            headerDiv.appendChild(editButton);
-            headerDiv.appendChild(saveButton);
+            headerDiv.appendChild(rightCornerHeaderDiv);
 
             // Create the loadout content container
             const contentDiv = document.createElement('div');
@@ -200,11 +214,14 @@ function updateLoadout(loadoutId, buildType, summary) {
 window.addEventListener('load', fetchLoadouts);
 
 async function handleDelete(loadoutId){
-    await fetch(baseUrl + loadoutId, {
+    try {
+    await fetch(`/api/v1/loadouts/${loadoutId}`, {
         method: "DELETE",
         headers: headers
-    })
-        .catch(err => console.error(err))
+    });
 
-    return getLoadouts(userId);
+    window.location.reload();
+    } catch (error) {
+        console.error('Error:', error)
+    }
 }

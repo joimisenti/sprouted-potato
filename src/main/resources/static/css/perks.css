@@ -28,7 +28,7 @@
 }
 
 .selected-perks {
-    position: fixed;
+    position: absolute;
     top: 0; /* stick to the top of the screen */
     right: 0; /* stick to the right side of the screen */
     width: 250px; /* adjust the width of the sticky box */

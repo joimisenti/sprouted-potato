@@ -17,7 +17,12 @@
     margin: 0;
 }
 
-.edit-button, .save-button {
+.right-corner-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-button, .save-button, .delete-button {
     background-color: #007bff;
     color: #fff;
     border: none;

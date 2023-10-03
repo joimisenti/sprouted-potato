@@ -31,3 +31,11 @@ const handleSubmit = async (e) =>{
 }
 
 registerForm.addEventListener("submit", handleSubmit)
+
+// Carousel HTML Element
+const myCarouselElement = document.querySelector('#myCarousel')
+
+const carousel = new bootstrap.Carousel(myCarouselElement, {
+  interval: 2000,
+  touch: false
+})
