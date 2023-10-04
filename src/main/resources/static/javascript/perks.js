@@ -26,23 +26,24 @@ function fetchPerks() {
             perkItem.appendChild(perkName);
 
             const selectButton = document.createElement('button');
+            selectButton.classList.add('btn', 'btn-outline-warning');
             selectButton.textContent = 'Select';
 
             // Event listeners to handle perk selection
-            selectButton.addEventListener('click', () => {
-                if (selectedPerks.length < 4) {
-                    // Check if the perk is not already in the selectedPerks list
-                    if (!selectedPerks.some(selectedPerk => selectedPerk.id === perk.id)) {
-                        selectedPerks.push(perk);
-                        updateSelectedPerks();
+                selectButton.addEventListener('click', () => {
+                    if (selectedPerks.length < 4) {
+                        // Check if the perk is not already in the selectedPerks list
+                        if (!selectedPerks.some(selectedPerk => selectedPerk.id === perk.id)) {
+                            selectedPerks.push(perk);
+                            updateSelectedPerks();
+                        } else {
+                            alert('This perk is already selected.');
+                        }
                     } else {
-                        alert('This perk is already selected.');
+                        // Handle case where maximum perks are selected
+                        alert('You can select up to 4 perks.')
                     }
-                } else {
-                    // Handle case where maximum perks are selected
-                    alert('You can select up to 4 perks.')
-                }
-            });
+                });
 
             perkItem.appendChild(selectButton);
 
@@ -71,6 +72,7 @@ function updateSelectedPerks() {
         // Add a button to remove the perk from the selection
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
+        removeButton.classList.add('btn', 'btn-outline-secondary', 'btn-sm');
         removeButton.addEventListener('click', () => {
             selectedPerks.splice(selectedPerks.indexOf(perk), 1);
             updateSelectedPerks();
@@ -86,6 +88,12 @@ function updateSelectedPerks() {
 
 // Function to submit perks to Loadouts table
 function handleSubmitPerksToLoadout() {
+
+    // Check if no perks are selected
+    if (selectedPerks.length === 0) {
+        alert('You must select at least 1 perk.');
+        return; // Prevents further execution
+    }
     // Create an array of selected perk IDs
     const selectedPerkIds = selectedPerks.map(perk => perk.id);
     console.log(selectedPerkIds)
@@ -110,7 +118,7 @@ function handleSubmitPerksToLoadout() {
     .then(response => {
         if(response.ok) {
             alert('Loadout created successfully.');
-            // Optionally, you can clear the selected perks list
+            clearSelectedPerks();
         } else {
             alert('Error creating loadout.');
         }
@@ -118,6 +126,13 @@ function handleSubmitPerksToLoadout() {
     .catch(error => {
         alert('An error occurred: ' + error.message);
     });
+}
+
+// Function to clear the selected perks list
+function clearSelectedPerks() {
+    selectedPerks.length = 0; // Empty the array of selection
+    const selectedPerksList = document.getElementById('selected-perks-list');
+    selectedPerksList.innerHTML = ''; // Clear the HTML content from the display
 }
 
 // Call fetchPerks function when the page loads

@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Chunky Image/Video Assets ###
+/src/main/resources/static/videos/fog-bg.mp4
+/src/main/resources/static/videos/all-kill-campfire-vid.mp4

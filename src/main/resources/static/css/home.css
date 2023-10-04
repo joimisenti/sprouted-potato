@@ -1,3 +1,22 @@
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+video {
+    object-fit: cover; /* Cover the entire container */
+}
+
+.loadout:hover {
+    opacity: 0.8;
+    background-color: white;
+    color: black;
+}
+
 .loadout {
     display: flex;
     flex-direction: column;
@@ -23,9 +42,7 @@
 }
 
 .edit-button, .save-button, .delete-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
+    margin: 0px 5px;
     padding: 5px 10px;
     cursor: pointer;
 }

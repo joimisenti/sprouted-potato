@@ -58,17 +58,17 @@ function fetchLoadouts() {
             // Header Part 2: Edit and Save buttons
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
-            editButton.classList.add('edit-button');
+            editButton.classList.add('edit-button', 'btn', 'btn-outline-info');
             editButton.addEventListener('click', () => toggleEditMode(loadoutDiv));
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
-            deleteButton.classList.add('delete-button');
+            deleteButton.classList.add('delete-button', 'btn', 'btn-secondary');
             deleteButton.addEventListener('click', () => handleDelete(loadout.id));
 
             const saveButton = document.createElement('button');
             saveButton.textContent = 'Save';
-            saveButton.classList.add('save-button');
+            saveButton.classList.add('save-button', 'btn', 'btn-warning');
             saveButton.style.display = 'none'; // Initially hidden
             saveButton.addEventListener('click', () => saveChanges(loadoutDiv));
 
