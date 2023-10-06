@@ -112,6 +112,14 @@
     "https://raw.githubusercontent.com/joeytierney/dbd-vue/develop/src/assets/character-portraits/survivors/05-nea-karlsson.png"
   },
   {
+    "name": "Boon: Circle of Healing",
+    "image":
+    "https://raw.githubusercontent.com/joeytierney/dbd-vue/develop/src/assets/perk-icons/survivors/boon-circle-of-healing.png",
+    "teachable": "Mikaela Reid Teachable Perk",
+    "survivor":
+    "https://raw.githubusercontent.com/joeytierney/dbd-vue/develop/src/assets/character-portraits/survivors/28-mikaela-reid.png"
+  },
+  {
     "name": "Streetwise",
     "image":
     "https://raw.githubusercontent.com/joeytierney/dbd-vue/develop/src/assets/perk-icons/survivors/streetwise.png",
