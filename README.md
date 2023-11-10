@@ -23,6 +23,8 @@ Users can visualize their mood on the My Day page, interact with the legend of s
 
 * Java
 * Bootstrap
+* Springboot
+* Maven
 * JavaScript
 * HTML
 * CSS
